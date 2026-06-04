@@ -172,7 +172,7 @@ This diagram represents the conceptual model of the solution.
 
 Aguirre, B. (2025). *Lambda Calculus Functional Paradigm*. https://docs.google.com/document/d/1w8DCXQ4cQPdcDPQOVN3Hn65X000V0oixgOatseDyvUE/edit?usp=sharing
 
-Codeforces. (2018). *Problem 978B — File Name*. https://codeforces.com/problemset/problem/978/B
+https://codeforces.com/problemset/problem/445/A
 
 https://docs.google.com/document/d/1RMGCGPHs4aLyfOTcwZJHSzQQlBP1uJYJe72jLIdcO7g/edit?tab=t.0
 
