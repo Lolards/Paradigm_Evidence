@@ -198,21 +198,25 @@ To present an alternative, I chose the Functional Paradigm using the Racket lang
 ```racket
 #lang racket
 
+;; color-cell: assigns a color to a single cell
 (define (color-cell cell row col)
   (cond
     [(equal? cell #\-) #\-]
     [(even? (+ row col)) #\B]
     [else #\W]))
-
+ 
+;; color-row: processes a single row
 (define (color-row row row-idx)
   (map (lambda (cell col) (color-cell cell row-idx col))
        row
        (build-list (length row) values)))
-
+ 
+;; solve: processes the entire board
 (define (solve board)
   (map (lambda (row row-idx) (color-row row row-idx))
        board
        (build-list (length board) values)))
+
 ```
 
 ### Why I prefer Prolog for this problem
