@@ -164,7 +164,69 @@ W B W
 - W -
 ```
 
-This diagram represents the conceptual model of the solution.
+# Test
+
+I implemented 8 test cases. Two come from the Codeforces problem statement and six are additional cases:
+
+<img width="1475" height="1078" alt="image" src="https://github.com/user-attachments/assets/b1b99f4e-addc-4220-8b97-e53a1f3d1f89" />
+
+To run the tests in SWI-Prolog:
+```prolog
+swipl paradigm.pl
+?- solve([['.','-','.'],['.','.','.'],[ '-','.', '-']], Result).
+Result = [['B','-','B'],['W','B','W'],['-','W','-']].
+```
+# Time & Space Complexity
+
+*Time complexity:* `O(n × m)` — the predicates color_rows and color_row together visit every cell of the board exactly once, performing O(1) work per cell via color_cell.
+
+*Space complexity:* `O(n × m)` — the recursion builds the output board cell by cell, so the total space used equals the size of the board.
+
+# Analysis 
+
+I chose the Logical Paradigm because this problem is a natural fit for it. The solution describes what is true about each cell — blocked cells stay unchanged, empty cells receive a color determined by their parity — rather than how to compute it with loops and conditionals. Prolog's unification selects the correct clause of color_cell automatically, without any explicit branching.
+
+The paradigm is especially useful here because:
+
+1. Pattern matching on the cell value (`'-'` vs `'.'`) replaces explicit `if/else` chains.
+2. Recursion over lists is the natural way to traverse the board in Prolog.
+3. The coloring rule is expressed as a logical constraint: `0 is (Row + Col) mod 2` — Prolog either satisfies it or tries the next clause.
+
+## Other Solutions
+
+To present an alternative, I chose the Functional Paradigm using the Racket language. Functional programming is a paradigm rooted in lambda calculus, where computation is expressed through function application and immutable data transformations (Aguirre, 2025). It avoids shared state and side effects.
+```racket
+#lang racket
+
+(define (color-cell cell row col)
+  (cond
+    [(equal? cell #\-) #\-]
+    [(even? (+ row col)) #\B]
+    [else #\W]))
+
+(define (color-row row row-idx)
+  (map (lambda (cell col) (color-cell cell row-idx col))
+       row
+       (build-list (length row) values)))
+
+(define (solve board)
+  (map (lambda (row row-idx) (color-row row row-idx))
+       board
+       (build-list (length board) values)))
+```
+
+### Why I prefer Prolog for this problem
+
+Between the two solutions, I prefer the Logical Paradigm in Prolog because the three clauses of `color_cell` map directly to the three possible situations of the problem: blocked cell, even cell, odd cell. Prolog selects the right clause through unification automatically — the code reads like a specification of the problem itself.
+
+In Racket, I still have to think about the order of the `cond` branches and use `map` with index tracking, which is less natural for a problem that is fundamentally about declaring rules per cell. An imperative solution in Python would also work in O(n × m) but would require explicit nested loops and mutable state — less declarative than either paradigm shown here.
+
+### Time & Space Complexity Comparison
+
+<img width="1487" height="765" alt="image" src="https://github.com/user-attachments/assets/f5b83b52-59dc-4993-98c0-92a7be250742" />
+
+
+All three paradigms achieve the same complexity. The key difference is expressiveness: Prolog declares the rules, Racket transforms the data functionally, and Python manages state imperatively.
 
 ---
 
@@ -175,7 +237,5 @@ Aguirre, B. (2025). *Lambda Calculus Functional Paradigm*. https://docs.google.c
 https://codeforces.com/problemset/problem/445/A
 
 https://docs.google.com/document/d/1RMGCGPHs4aLyfOTcwZJHSzQQlBP1uJYJe72jLIdcO7g/edit?tab=t.0
-
-Wikipedia. (2024). Codeforces. https://es.wikipedia.org/wiki/Codeforces
 
 Kowalski, R. (2014). Logic Programming. Handbook of the History of Logic (pp. 523–569). https://doi.org/10.1016/b978-0-444-51624-4.50012-5
