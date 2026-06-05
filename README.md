@@ -217,6 +217,11 @@ To present an alternative, I chose the Functional Paradigm using the Racket lang
        board
        (build-list (length board) values)))
 
+;; Example
+(solve (list (string->list ".-.")
+             (string->list "...")
+             (string->list "-.-")))
+
 ```
 
 ### Why I prefer Prolog for this problem
@@ -243,3 +248,5 @@ https://codeforces.com/problemset/problem/445/A
 https://docs.google.com/document/d/1RMGCGPHs4aLyfOTcwZJHSzQQlBP1uJYJe72jLIdcO7g/edit?tab=t.0
 
 Kowalski, R. (2014). Logic Programming. Handbook of the History of Logic (pp. 523–569). https://doi.org/10.1016/b978-0-444-51624-4.50012-5
+
+Learn Racket in Y Minutes. (s. f.). https://learnxinyminutes.com/es/racket/
