@@ -250,3 +250,5 @@ https://docs.google.com/document/d/1RMGCGPHs4aLyfOTcwZJHSzQQlBP1uJYJe72jLIdcO7g/
 Kowalski, R. (2014). Logic Programming. Handbook of the History of Logic (pp. 523–569). https://doi.org/10.1016/b978-0-444-51624-4.50012-5
 
 Learn Racket in Y Minutes. (s. f.). https://learnxinyminutes.com/es/racket/
+
+makigas. (2014, 5 junio). Racket – 4. Listas: manipulación, iteración y recursión [Vídeo]. YouTube. https://www.youtube.com/watch?v=H3ExAU7QKt4
