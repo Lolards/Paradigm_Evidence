@@ -237,6 +237,8 @@ In Racket, I still have to think about the order of the `cond` branches and use 
 
 All three paradigms achieve the same complexity. The key difference is expressiveness: Prolog declares the rules, Racket transforms the data functionally, and Python manages state imperatively.
 
+Although, the best solution would actually be the Parallel Paradigm. Since every cell is completely independent, its color only depends on its own position `(Row + Col) mod 2`, all cells could be colored at the same time with no communication needed between threads, reducing the time to O((n × m) / p) where p is the number of processors. That said, for a board of at most 100×100 cells, the overhead of managing threads would likely outweigh the gains, making the Logical Paradigm in Prolog the most practical choice for this problem size.
+
 ---
 
 # References
@@ -252,3 +254,5 @@ Kowalski, R. (2014). Logic Programming. Handbook of the History of Logic (pp. 52
 Learn Racket in Y Minutes. (s. f.). https://learnxinyminutes.com/es/racket/
 
 makigas. (2014, 5 junio). Racket – 4. Listas: manipulación, iteración y recursión [Vídeo]. YouTube. https://www.youtube.com/watch?v=H3ExAU7QKt4
+
+https://docs.google.com/document/d/1ravAZ92VzJ-xXXCrWzP6W8i9yWVWZB0MT273BVoxQvI/edit?tab=t.0
